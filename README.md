@@ -18,14 +18,14 @@ tables are named map C1 and map C2 in the Python code. Double check that all the
 
 Step 4: Generate synthetic observations for C2, using the NoGAN algorithm described in project 2.1.
 Use the following features only:
-MMMMM bidirectional syn packets
-MMMMM src2dst syn packets
-MMMMM application category name
-MMMMM application confidence
-MMMMM src2dst mean ps
-MMMMM src2dst psh packets
-MMMMM bidirectional mean ps
-MMMMM label
+bidirectional syn packets
+src2dst syn packets
+application category name
+application confidence
+src2dst mean ps
+src2dst psh packets
+bidirectional mean ps
+label
 The feature “label” indicates fraud when the value is not 0. Few observations are labeled as non-fraud in C2. How would you proceed to substantially increase the proportion of non-fraud in C2, in the generated
 data? How about generating values for the src port feature, based on the map C2 distribution obtained in step 3? Is the distribution in question uniform within its range, between 40,000 and 60,000? If yes, you
 could generate uniform values for this feature, possibly different from those actually observed.
