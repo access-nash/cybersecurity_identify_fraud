@@ -40,7 +40,7 @@ C_counts = B_unique.groupby(cols_for_C)['size'].sum().reset_index(name='multipli
 C1_raw = C_counts[C_counts['multiplicity'] > 1].copy()
 C2_raw = C_counts[C_counts['multiplicity'] == 1].copy()
 
-# Outlier removal in C1 (IQR)
+# Outlier removal in C1 (z score)
 if len(C1_raw) > 0:
     cont_cols = [c for c in C1_raw.columns if c != 'multiplicity' and
                  pd.api.types.is_numeric_dtype(C1_raw[c]) and C1_raw[c].nunique() > 10]
@@ -52,7 +52,7 @@ if len(C1_raw) > 0:
         removed = C1_raw[~mask]
         # If removal removes more than half, keep all (to avoid empty C1)
         if len(removed) > len(C1_raw) // 2:
-            print(f"IQR/Z-score would remove {len(removed)} rows from C1. Keeping all.")
+            print(f"Z-score would remove {len(removed)} rows from C1. Keeping all.")
         else:
             C1_raw = C1_raw[mask].copy()
             print(f"Removed {len(removed)} outliers from C1")
